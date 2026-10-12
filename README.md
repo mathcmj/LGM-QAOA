@@ -135,8 +135,6 @@ Output: `results/tsp_{5,6}city_ramp_grid_20.csv`.
   Use `--workers` to change this, except for `NOISE_TSP_eval.py`, where `N_WORKERS` is set in the file.
   The scripts default BLAS/OpenMP thread settings to one per process, while retaining any values
   already set in the environment.
-- **Run time.** The full runs take hours. On macOS, prefix the command with `caffeinate -is`
-  to keep the machine awake.
 
 ## Citation
 
