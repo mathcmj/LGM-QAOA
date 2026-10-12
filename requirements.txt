@@ -1,0 +1,6 @@
+# Tested with Python 3.13.15
+pennylane==0.45.1
+pennylane-lightning==0.45.0
+numpy==2.5.3
+scipy==1.18.1
+pandas==3.0.6
