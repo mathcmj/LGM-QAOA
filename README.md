@@ -16,7 +16,7 @@ python -m pip install -r requirements.txt
 ```
 
 Tested with Python 3.13.15, PennyLane 0.45.1, PennyLane-Lightning 0.45.0, NumPy 2.5.3,
-SciPy 1.18.1, and pandas 3.0.6. The package versions are pinned in `requirements.txt`;
+SciPy 1.18.1, pandas 3.0.6, and Matplotlib 3.11.2. The package versions are pinned in `requirements.txt`;
 Python itself must be installed separately.
 
 ## Files
@@ -28,8 +28,10 @@ Python itself must be installed separately.
 | `GMQAOA_TSP_full.py` | GM-QAOA for the 4-city TSP with the full feasible-subspace initial state (all constraints encoded) |
 | `NOISE_TSP_eval.py` | Noisy (depolarizing) evaluation of the optimized GM / LGM parameters of TSP instance 1 |
 | `RAMP_TSP_grid.py` | Linear-ramp GM-/LGM-QAOA for the 5- and 6-city TSP (grid search over the ramp slopes) |
+| results_ECP/ | ECP result data and plotting script |
+| results_TSP/ | TSP result data and plotting scripts, including noise, mixer comparisons, and linear-ramp evaluations |
 
-All scripts write to `./results/` by default, relative to the directory they are run from.
+The five simulation scripts above write to `./results/` by default, relative to the directory they are run from.
 The TSP, noise, and ramp scripts skip previously recorded rows when resumed with unchanged settings.
 The ECP script does not skip existing rows: rerunning a trial appends another result to the CSV.
 For ECP, select the remaining depths and trials explicitly, or use a separate `--outdir` for a fresh run.
@@ -124,6 +126,20 @@ python RAMP_TSP_grid.py --cities 6                  # p = 4, 8, ..., 40
 ```
 
 Output: `results/tsp_{5,6}city_ramp_grid_20.csv`.
+
+## Plotting the provided results
+
+The `results_ECP/` and `results_TSP/` directories contain result data and plotting scripts. To generate the figures from the provided data, run the following commands from the repository root:
+
+```bash
+python results_ECP/plot_ECP_results.py
+python results_TSP/plot_TSP_results.py
+python results_TSP/plot_TSP_noise.py
+python results_TSP/plot_TSP_mixers_comparison.py
+python results_TSP/plot_ramp_5_6city.py
+```
+
+Each script reads the CSV files in its own directory and saves the figures in PNG and PDF formats to a `figures/` subdirectory. These commands use the provided data and do not rerun the simulations.
 
 ## Notes
 
